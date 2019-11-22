@@ -1,0 +1,5 @@
+# ignores all compiled Python bytecode
+*.pyc
+
+# ignore all IDE configuration files
+.idea/*

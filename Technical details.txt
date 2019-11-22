@@ -1,0 +1,25 @@
+BEFORE ANYTHING:
+source devel/setup.sh
+
+LAUNCH PROJECT:
+roslaunch ivr_assignment spawn.launch
+
+RUN CODE:
+source temp-python/bin/activate
+rosrun ivr_assignment image1.py
+
+MOVE ROBOT:
+rostopic pub -1 /robot/joint1_position_controller/command std_msgs/Float64 “data: 1.0”
+
+PRODUCE GRAPHS FOR TARGET ESTIMATES:
+- for each one, run the command
+- click on the arrow button to set axes (choose around 50 seconds)
+- save as an image
+rqt_plot /target_position_estimate/data[0] /target/x_position_controller/command/data
+rqt_plot /target_position_estimate/data[1] /target/y_position_controller/command/data
+rqt_plot /target_position_estimate/data[2] /target/z_position_controller/command/data
+
+PRODUCE GRAPHS FOR CONTROL ACCURACY:
+rqt_plot /target_position_estimate/data[0] /blobs_pos/data[9]
+rqt_plot /target_position_estimate/data[1] /blobs_pos/data[10]
+rqt_plot /target_position_estimate/data[2] /blobs_pos/data[11]
