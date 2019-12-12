@@ -73,7 +73,7 @@ class BlobsEstimator:
         # z_line = cv2.line(red_mask, (base_frame[0], base_frame[1]), (base_frame[0], red_detected[1]), color=(255, 255, 255))
         # center_line = cv2.line(red_mask, (base_frame[0], base_frame[1]), (red_detected[0], red_detected[1]), color=(255, 255, 255))
         # cv2.imshow('Visualization Image 1, Target ZY, Red Blob', red_mask)
-        # # cv2.imshow('Original Image 1, Target ZY', self.cv_image1)
+        # cv2.imshow('Original Image 1, Target ZY', self.cv_image1)
         # cv2.waitKey(3)
 
         print("YE:({0:.1f}, {1:0.2f}, {2:.2f}), BL:({3:.2f}, {4:.2f}, {5:.2f}), GR:({6:.2f}, {7:.2f}, {8:.2f}), "
