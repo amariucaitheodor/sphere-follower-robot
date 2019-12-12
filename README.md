@@ -1,7 +1,7 @@
-# Ball Tracker Robot
-## Theodor Amariucai
-### I started the project with Sonia Marshall as part of the coursework for INFR09019 Introduction to Vision and Robotics
-### Robotic Arm Kinematic GUI (part of MRPT) was very useful in helping me understand the Denavit-Hartenberg parameters
+## Sphere Follower Robot
+### Theodor Amariucai
+#### I started the project with Sonia Marshall as part of our coursework for INFR09019 Introduction to Vision and Robotics.
+#### A very useful resource which helped me understand the Denavit-Hartenberg parameters was the Robotic Arm Kinematic GUI (part of MRPT).
 
 #### BEFORE ANYTHING:
 source devel/setup.sh
