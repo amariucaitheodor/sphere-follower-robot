@@ -12,8 +12,8 @@ roslaunch ivr_assignment spawn.launch
 ##### Activate temporary python environment with Python 2.7 needed for ROS
 source temp-python/bin/activate
 ##### For basic functionality please run:
-rosrun ivr_assignment BlobsEstimator.py \
-rosrun ivr_assignment TargetEstimator.py \
+rosrun ivr_assignment BlobsEstimator.py
+rosrun ivr_assignment TargetEstimator.py
 rosrun ivr_assignment JointAnglesEstimator.py 
 ##### then, to get the results of forward kinematics please run:
 rosrun ivr_assignment ForwardKinematics.py 
