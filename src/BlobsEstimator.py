@@ -16,7 +16,8 @@ class BlobsEstimator:
     def __init__(self):
         # initialize the node named image_processing
         rospy.init_node('blob_estimation', anonymous=True)
-        # initialize a subscriber to recieve messages rom a topic named /robot/camera1/image_raw and use callback function to recieve data
+        # initialize a subscriber to receive messages rom a topic named /robot/camera1/image_raw and use callback
+        # function to receive data
         self.image_sub1 = rospy.Subscriber("/camera1/robot/image_raw", Image, self.image1_callback)
         self.image_sub2 = rospy.Subscriber("/camera2/robot/image_raw", Image, self.image2_callback)
         # initialize a publisher to publish position of blobs
@@ -87,16 +88,16 @@ class BlobsEstimator:
         self.blobs.data = self.blobs_history
         self.blob_pub.publish(self.blobs)
 
-        print("YE:({0:.1f}, {1:0.2f}, {2:.2f}), BL:({3:.2f}, {4:.2f}, {5:.2f}), GR:({6:.2f}, {7:.2f}, {8:.2f}), "
-              "RE:({9:.2f}, {10:.2f}, {11:.2f})".format(self.blobs_history[0], self.blobs_history[1],
-                                                        self.blobs_history[2],
-                                                        self.blobs_history[3], self.blobs_history[4],
-                                                        self.blobs_history[5],
-                                                        self.blobs_history[6], self.blobs_history[7],
-                                                        self.blobs_history[8],
-                                                        self.blobs_history[9], self.blobs_history[10],
-                                                        self.blobs_history[11]),
-              end='\r')
+        # print("YE:({0:.1f}, {1:0.2f}, {2:.2f}), BL:({3:.2f}, {4:.2f}, {5:.2f}), GR:({6:.2f}, {7:.2f}, {8:.2f}), "
+        #       "RE:({9:.2f}, {10:.2f}, {11:.2f})".format(self.blobs_history[0], self.blobs_history[1],
+        #                                                 self.blobs_history[2],
+        #                                                 self.blobs_history[3], self.blobs_history[4],
+        #                                                 self.blobs_history[5],
+        #                                                 self.blobs_history[6], self.blobs_history[7],
+        #                                                 self.blobs_history[8],
+        #                                                 self.blobs_history[9], self.blobs_history[10],
+        #                                                 self.blobs_history[11]),
+        #       end='\r')
 
     # update x and z of blobs (z is the average between the two images)
     def image2_callback(self, data):

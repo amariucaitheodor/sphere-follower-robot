@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-  <include file="$(find ivr_assignment)/launch/spawn.launch"/>
-   <node name="blob_estimation" pkg="ivr_assignment" type="BlobsEstimator.py" output="screen"/>
-   <node name="target_estimation" pkg="ivr_assignment" type="TargetEstimator.py" output="screen"/>
-   <node name="joint_angles_estimation" pkg="ivr_assignment" type="JointAnglesEstimator.py" output="screen"/>
-   <node name="controller" pkg="ivr_assignment" type="Controller.py" output="screen"/>
+  <include file="$(find sphere-follower-robot)/launch/spawn.launch"/>
+  <node name="blob_estimation" pkg="sphere-follower-robot" type="BlobsEstimator.py" output="screen"/>
+  <node name="target_estimation" pkg="sphere-follower-robot" type="TargetEstimator.py" output="screen"/>
+  <node name="joint_angles_estimation" pkg="sphere-follower-robot" type="JointAnglesEstimator.py" output="screen"/>
+  <node name="controller" pkg="sphere-follower-robot" type="Controller.py" output="screen"/>
 </launch>

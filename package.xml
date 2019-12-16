@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>ivr_assignment</name>
-  <version>0.0.0</version>
-  <description>The ivr_assignment package</description>
+  <name>sphere-follower-robot</name>
+  <version>1.0.0</version>
+  <description>The sphere follower robot package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="mohsen@todo.todo">mohsen</maintainer>
+  <maintainer email="amariucaitheodor@gmail.com">theodor</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->

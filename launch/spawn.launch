@@ -6,12 +6,12 @@
   <arg name="world" default="empty"/> 
   <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
-  <arg name="gui" default="false"/>
+  <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
   
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find ivr_assignment)/worlds/myworld.world"/>
+    <arg name="world_name" value="$(find sphere-follower-robot)/worlds/myworld.world"/>
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="gui" value="$(arg gui)"/>
@@ -21,7 +21,7 @@
 
 <!--Spawn robot-->
   <group ns="/robot">
-	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ivr_assignment)/urdf/robot.urdf'"/>
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphere-follower-robot)/urdf/robot.urdf'"/>
 
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
@@ -31,7 +31,7 @@
 	args="-urdf -param robot_description -model my_robot -x $(arg x) -y $(arg y) -z $(arg z)" />
 
 <!-- Load joint controller configurations from YAML file to parameter server -->          
-        <rosparam command="load" file="$(find ivr_assignment)/config/joints.yaml" />
+        <rosparam command="load" file="$(find sphere-follower-robot)/config/joints.yaml" />
 
 <!-- load the controllers -->
 	<node name="controller_spawner" pkg="controller_manager" type="spawner"
@@ -54,7 +54,7 @@
 
 <!--Spawn object-->
   <group ns="/target">
-	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ivr_assignment)/urdf/object.urdf'"/>
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphere-follower-robot)/urdf/object.urdf'"/>
 
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
@@ -64,7 +64,7 @@
 	args="-urdf -param robot_description -model my_target -x $(arg x) -y $(arg y) -z $(arg z)" />
 
 <!-- Load joint controller configurations from YAML file to parameter server -->          
-        <rosparam command="load" file="$(find ivr_assignment)/config/joints2.yaml" />
+        <rosparam command="load" file="$(find sphere-follower-robot)/config/joints2.yaml" />
 
 <!-- load the controllers -->
 	<node name="controller_spawner2" pkg="controller_manager" type="spawner"
@@ -86,7 +86,7 @@
 
 <!--Spawn object 2-->
   <group ns="/target2">
-	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ivr_assignment)/urdf/object2.urdf'"/>
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphere-follower-robot)/urdf/object2.urdf'"/>
 
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
@@ -96,7 +96,7 @@
 	args="-urdf -param robot_description -model my_target2 -x $(arg x) -y $(arg y) -z $(arg z)" />
 
 <!-- Load joint controller configurations from YAML file to parameter server -->          
-        <rosparam command="load" file="$(find ivr_assignment)/config/joints3.yaml" />
+        <rosparam command="load" file="$(find sphere-follower-robot)/config/joints3.yaml" />
 
 <!-- load the controllers -->
 	<node name="controller_spawner3" pkg="controller_manager" type="spawner"
@@ -118,7 +118,7 @@
 
 <!--Spawn Camera-->
   <group ns="/camera1">
-	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ivr_assignment)/urdf/camera.urdf'"/>
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphere-follower-robot)/urdf/camera.urdf'"/>
 
 	<arg name="x" default="18"/>
 	<arg name="y" default="0"/>
@@ -133,7 +133,7 @@
 
 <!--Spawn Second Camera-->
   <group ns="/camera2">
-	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ivr_assignment)/urdf/camera2.urdf'"/>
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphere-follower-robot)/urdf/camera2.urdf'"/>
 
 	<arg name="x" default="0"/>
 	<arg name="y" default="-18"/>
@@ -148,7 +148,7 @@
 
 <!--Spawn Target Actuator-->
   <group ns="/target_control"> 
-        <node name="target_move" pkg="ivr_assignment" type="target_move.py" args="$(find ivr_assignment)/src/target_move.py" />
+        <node name="target_move" pkg="sphere-follower-robot" type="target_move.py" args="$(find sphere-follower-robot)/src/target_move.py" />
   </group>
 
 

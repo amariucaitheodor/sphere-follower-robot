@@ -1,15 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e062a36-98a0-4a7c-a49c-f80b6202bf41" name="Default Changelist" comment="" />
+    <list default="true" id="cbe50d79-367d-4ce0-ba0c-0bfb888978b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/full_sphere.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/improved.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/new_target_x_position.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/new_target_y_position.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/new_target_z_position.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/original.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/target_x_position.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/target_x_position_no_labels.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/target_y_position.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/target_z_position.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../launch/control.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../launch/control.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../launch/rviz.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../launch/rviz.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../launch/rviz2.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../launch/rviz2.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../launch/spawn.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../launch/spawn.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../package.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlobsEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlobsEstimator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ForwardKinematics.py" beforeDir="false" afterPath="$PROJECT_DIR$/ForwardKinematics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JointAnglesEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/JointAnglesEstimator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TargetEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/TargetEstimator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visionlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/visionlib.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1TnnkjxmYvzNW7x5sKH06TQhKKp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/WORKING PERFECTLY/ivr_assignment-master/src/image_processing.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="ServiceViewManager">
@@ -28,16 +65,31 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cbe50d79-367d-4ce0-ba0c-0bfb888978b7" name="Default Changelist" comment="" />
+      <created>1576527606498</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576527606498</updated>
+    </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="555" y="212" width="800" height="680" key="#Inspections" timestamp="1576493783335">
+    <state x="555" y="212" width="800" height="680" key="#Inspections" timestamp="1576527694063">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="212" width="800" height="680" key="#Inspections/0.27.1920.1053@0.27.1920.1053" timestamp="1576493783335" />
-    <state x="456" y="188" key="SettingsEditor" timestamp="1576493757721">
+    <state x="555" y="212" width="800" height="680" key="#Inspections/0.27.1920.1053@0.27.1920.1053" timestamp="1576527694063" />
+    <state x="743" y="309" width="424" height="487" key="FileChooserDialogImpl" timestamp="1576531747056">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="456" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1576493757721" />
+    <state x="743" y="309" width="424" height="487" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576531747056" />
+    <state x="456" y="188" key="SettingsEditor" timestamp="1576527676895">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="456" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1576527676895" />
+    <state x="623" y="255" width="672" height="687" key="search.everywhere.popup" timestamp="1576529685088">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="623" y="255" width="672" height="687" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1576529685088" />
   </component>
 </project>

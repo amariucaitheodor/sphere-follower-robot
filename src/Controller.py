@@ -6,7 +6,7 @@ import numpy as np
 from std_msgs.msg import Float64, Float64MultiArray
 
 
-def calculate_jacobian(joints):
+def precomputed_jacobian(joints):
     s1 = np.sin(joints[0])
     c1 = np.cos(joints[0])
     s2 = np.sin(joints[1])
@@ -57,7 +57,7 @@ class Controller:
         self.robot_joint3_pub = rospy.Publisher("/robot/joint3_position_controller/command", Float64, queue_size=10)
         self.robot_joint4_pub = rospy.Publisher("/robot/joint4_position_controller/command", Float64, queue_size=10)
 
-        # inititalize variables
+        # initialize variables
         self.end_effector_position = np.array([0.0, 0.0, 7.0])
         self.target_position = np.array([0.0, 0.0, 0.0])
         self.joint_angles = np.array([0.0, 0.0, 0.0, 0.0])
@@ -81,16 +81,11 @@ class Controller:
         self.end_effector_position[2] = blobs.data[11]
 
     def callback_update_target(self, target):
-        self.target_position[0] = target.data[0]
-        self.target_position[1] = target.data[1]
-        self.target_position[2] = target.data[2]
+        self.target_position = target.data
 
     def callback_update_joints(self, joints):
         # update the current joint angles
-        self.joint_angles[0] = joints.data[0]
-        self.joint_angles[1] = joints.data[1]
-        self.joint_angles[2] = joints.data[2]
-        self.joint_angles[3] = joints.data[3]
+        self.joint_angles = joints.data
 
         # calculate the new joint angles using closed-loop control
         new_joint_angles = self.control_closed()
@@ -110,10 +105,10 @@ class Controller:
 
     def control_closed(self):
         # P gain
-        k_p = np.array([[0.1, 0, 0], [0, 0.1, 0], [0, 0, 0.1]])
+        k_p = np.eye(3) * 0.1  # working uses 10?
 
         # D gain
-        k_d = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+        k_d = np.eye(3) * 1  # working uses 0.1?
 
         # estimate time step
         cur_time = np.array([rospy.get_time()])
@@ -139,12 +134,15 @@ class Controller:
 
         # initial value of joints
         q_initial = self.joint_angles
+        # OR USE estimated joint angles!!
+        # self.estimate_joint_angles()
 
         # calculate the Moore-Penrose psuedo-inverse of Jacobian to obtain angle velocity
-        jacobian_inverse = np.linalg.pinv(calculate_jacobian(q_initial))
+        jacobian_inverse = np.linalg.pinv(precomputed_jacobian(q_initial))
 
         # angular displacement of joints
-        # delta_Q = J^(+) * delta_X, where delta_X  = (Kp*error + Kd*error_derivative)
+        # delta_Q = J^(+) * delta_X
+        # delta_X  = Kp*error + Kd*error_derivative
         q_delta = np.dot(jacobian_inverse,
                          (np.dot(
                              k_d,

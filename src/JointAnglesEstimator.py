@@ -1,30 +1,11 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
-import sys
+from functools import reduce
 import rospy
 import numpy as np
 from std_msgs.msg import Float64, Float64MultiArray
-from scipy.optimize import least_squares
-
-
-# Defined elementary rotations
-def rot_around_x(theta):
-    return np.array([[1, 0, 0],
-                     [0, np.cos(theta), -np.sin(theta)],
-                     [0, np.sin(theta), np.cos(theta)]])
-
-
-def rot_around_y(theta):
-    return np.array([[np.cos(theta), 0, np.sin(theta)],
-                     [0, 1, 0],
-                     [-np.sin(theta), 0, np.cos(theta)]])
-
-
-def rot_around_z(theta):
-    return np.array([[np.cos(theta), -np.sin(theta), 0],
-                     [np.sin(theta), np.cos(theta), 0],
-                     [0, 0, 1]])
+from scipy.optimize import leastsq
 
 
 class JointAnglesEstimator:
@@ -45,67 +26,55 @@ class JointAnglesEstimator:
         if len(blobs.data) != 0:
             self.blob_positions = blobs.data
 
-        joint_angles = self.measure_angles()
+        joint_angles = self.estimate_joint_angles()
 
-        print("THETA 1:{0:.2f}, THETA 2:{1:.2f}, THETA 3:{2:.2f}, THETA 4:{3:.2f}".format(joint_angles[0],
-                                                                                          joint_angles[1],
-                                                                                          joint_angles[2],
-                                                                                          joint_angles[3]), end='\r')
+        if joint_angles is None:
+            return
+
+        # print("THETA 1:{0:.2f}, THETA 2:{1:.2f}, THETA 3:{2:.2f}, THETA 4:{3:.2f}".format(joint_angles[0],
+        #                                                                                   joint_angles[1],
+        #                                                                                   joint_angles[2],
+        #                                                                                   joint_angles[3]), end='\r')
 
         self.joint_angles.data = joint_angles
         self.joint_angles_pub.publish(self.joint_angles)
 
-    def error_fct(self, theta):
-        s1 = np.sin(theta[0])
-        c1 = np.cos(theta[0])
-        s2 = np.sin(theta[1])
-        c2 = np.cos(theta[1])
-        s3 = np.sin(theta[2])
-        c3 = np.cos(theta[2])
-
-        blue = np.array([self.blob_positions[3], self.blob_positions[4], self.blob_positions[5]])
-        green = np.array([self.blob_positions[6], self.blob_positions[7], self.blob_positions[8]])
-
-        blue_to_green_normalized = green - blue
-        # print("blue: {},  green: {}, blue_to_green: {}".format(blue, green, blue_to_green), end='\r')
-        blue_to_green_normalized = blue_to_green_normalized / np.linalg.norm(blue_to_green_normalized)
-
-        # return error which is to be minimized
-        # i.e. the difference between our (blue to green vector) and the (blue to green vector) that we are trying to obtain from the FK of A1A2A3
-        return abs(-c1 * s3 + s1 * s2 * c3 - blue_to_green_normalized[0]) + abs(
-            -s1 * s3 - c1 * s2 * c3 - blue_to_green_normalized[1]) + abs(
-            c2 * c3 - blue_to_green_normalized[2])
-
-    def measure_angles(self):
-        # Descends in the angle space towards the minimum error, minimizing the error function and finding theta 1, 2 and 3
-        measured_angles = least_squares(self.error_fct, np.array([0.5, 0.5, 0.5]), bounds=(0, 1))
-        measured_angles = measured_angles.x
-        theta1 = measured_angles[0]
-        theta2 = measured_angles[1]
-        theta3 = measured_angles[2]
+    # estimate joint angles via an optimization problem knowing joint positions
+    # descends in the angle space towards the minimum error, minimizing the error function and finding the thetas
+    def estimate_joint_angles(self):
+        # all differences are to be minimized
+        # i.e. the difference between our yellow to green vector and the yellow to green vector that we know from the
+        # FK of A1A2A3 (top three rows of last column)
+        # to get theta 4, we also minimize distance between Z of red and FK-obtained Z of red
+        def cost_function(x, data):
+            s1 = np.sin(x[0])
+            c1 = np.cos(x[0])
+            s2 = np.sin(x[1])
+            c2 = np.cos(x[1])
+            s3 = np.sin(x[2])
+            c3 = np.cos(x[2])
+            s4 = np.sin(x[3])
+            c4 = np.cos(x[3])
+            return ((3 * s1 * s2 * c3 + 3 * c1 * s3 - data[0]),
+                    (-3 * c1 * s2 * c3 - 3 * s1 * s3 - data[1]),
+                    (3 * c2 * c3 + 2 - data[2]),
+                    (2 * c2 * c3 * c4 - 2 * s2 * s4 + 3 * c2 * c3 + 2 - data[3]))  # minimize distance between
 
         green = np.array([self.blob_positions[6], self.blob_positions[7], self.blob_positions[8]])
         red = np.array([self.blob_positions[9], self.blob_positions[10], self.blob_positions[11]])
 
-        green_to_red_normalized = red - green
-        green_to_red_normalized = green_to_red_normalized / np.linalg.norm(green_to_red_normalized)
+        solution = leastsq(cost_function, np.zeros(4), args=[green[0], green[1], green[2], red[2]])
 
-        # Perform inverse rotations to obtain x3 (gr to red normalized) in reference frame
-        green_to_red_normalized_in_ref_frame = rot_around_y(-theta3).dot(rot_around_x(-theta2).dot(
-            rot_around_z(-theta1).dot(green_to_red_normalized)))
+        # discard the result beyond joints configuration space (basically use the same joint angle as last time)
+        if reduce(lambda x, y: x or y > np.pi or y < -np.pi, solution[0], False):
+            return None
 
-        # Theta 4 rotates around z, therefore we calculate the arctangent w.r.t the Y and X displacement
-        # Consult robot configuration for a visualization of this
-        y_displacement = green_to_red_normalized_in_ref_frame[1]
-        x_displacement = green_to_red_normalized_in_ref_frame[0]
-        theta4 = np.arctan2(y_displacement, x_displacement)
-        measured_angles = np.append(measured_angles, theta4)
-        return measured_angles
+        return np.round(solution[0], 2)
 
 
 # call the class
-def main(args):
-    ja = JointAnglesEstimator()
+def main():
+    JointAnglesEstimator()
     try:
         rospy.spin()
     except KeyboardInterrupt:
@@ -114,4 +83,4 @@ def main(args):
 
 # run the code if the node is called
 if __name__ == '__main__':
-    main(sys.argv)
+    main()

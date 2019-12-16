@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 
-sphere_template = cv2.imread("src/sphere-follower-robot/src/templates/sphere.png", 0)
+sphere_template = cv2.imread("/home/theo/catkin_ws/src/sphere-follower-robot/src/templates/sphere.png", 0)
 
 
 # Detecting the centre of a colored circle

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-   <arg name="rvizconfig" default="$(find ivr_assignment)/rviz/object.rviz" />
+   <arg name="rvizconfig" default="$(find sphere-follower-robot)/rviz/object.rviz" />
    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ivr_assignment)/urdf/object.urdf'"/>
 
    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
