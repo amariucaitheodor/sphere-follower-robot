@@ -8,6 +8,9 @@ source devel/setup.sh
 #### LAUNCH PROJECT:
 roslaunch ivr_assignment spawn.launch
 
+#### LAUNCH CONTROL:
+roslaunch ivr_assignment control.launch
+
 #### RUN CODE:
 ##### Activate temporary python environment with Python 2.7 needed for ROS
 source temp-python/bin/activate

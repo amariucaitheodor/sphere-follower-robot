@@ -1,4 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2e062a36-98a0-4a7c-a49c-f80b6202bf41" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
   <component name="ProjectId" id="1TnnkjxmYvzNW7x5sKH06TQhKKp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="555" y="212" width="800" height="680" key="#Inspections" timestamp="1576493783335">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="212" width="800" height="680" key="#Inspections/0.27.1920.1053@0.27.1920.1053" timestamp="1576493783335" />
+    <state x="456" y="188" key="SettingsEditor" timestamp="1576493757721">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="456" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1576493757721" />
+  </component>
 </project>
