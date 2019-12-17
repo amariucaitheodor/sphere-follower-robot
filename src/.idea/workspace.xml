@@ -2,30 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbe50d79-367d-4ce0-ba0c-0bfb888978b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/full_sphere.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/improved.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/new_target_x_position.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/new_target_y_position.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/new_target_z_position.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/original.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/target_x_position.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/target_x_position_no_labels.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/target_y_position.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Initial Assignment/images/target_z_position.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../launch/control.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../launch/control.launch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../launch/rviz.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../launch/rviz.launch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../launch/rviz2.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../launch/rviz2.launch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../launch/spawn.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../launch/spawn.launch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../package.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../package.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/src.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/src.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlobsEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlobsEstimator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ForwardKinematics.py" beforeDir="false" afterPath="$PROJECT_DIR$/ForwardKinematics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JointAnglesEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/JointAnglesEstimator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TargetEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/TargetEstimator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/MoveOrangeSphere.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visionlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/visionlib.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +24,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1TnnkjxmYvzNW7x5sKH06TQhKKp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -46,8 +35,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/WORKING PERFECTLY/ivr_assignment-master/src/image_processing.py" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Perfect IVR submission" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -79,10 +76,30 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="212" width="800" height="680" key="#Inspections/0.27.1920.1053@0.27.1920.1053" timestamp="1576527694063" />
-    <state x="743" y="309" width="424" height="487" key="FileChooserDialogImpl" timestamp="1576531747056">
+    <state x="418" y="209" width="1084" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576610416293">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="743" y="309" width="424" height="487" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576531747056" />
+    <state x="418" y="209" width="1084" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1576610416293" />
+    <state x="743" y="309" width="424" height="487" key="FileChooserDialogImpl" timestamp="1576618249264">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="743" y="309" width="424" height="487" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576618249264" />
+    <state width="1888" height="269" key="GridCell.Tab.0.bottom" timestamp="1576610423052">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1888" height="269" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1576610423052" />
+    <state width="1888" height="269" key="GridCell.Tab.0.center" timestamp="1576610423050">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1888" height="269" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1576610423050" />
+    <state width="1888" height="269" key="GridCell.Tab.0.left" timestamp="1576610423049">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1888" height="269" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1576610423049" />
+    <state width="1888" height="269" key="GridCell.Tab.0.right" timestamp="1576610423051">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1888" height="269" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1576610423051" />
     <state x="456" y="188" key="SettingsEditor" timestamp="1576527676895">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

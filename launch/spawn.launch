@@ -148,7 +148,7 @@
 
 <!--Spawn Target Actuator-->
   <group ns="/target_control"> 
-        <node name="target_move" pkg="sphere-follower-robot" type="target_move.py" args="$(find sphere-follower-robot)/src/target_move.py" />
+        <node name="target_move" pkg="sphere-follower-robot" type="MoveOrangeSphere.py" args="$(find sphere-follower-robot)/src/MoveOrangeSphere.py" />
   </group>
 
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
-import sys
 import cv2
 import rospy
 import numpy as np
@@ -45,11 +44,13 @@ class TargetEstimator:
         # initialize the node named image_processing
         rospy.init_node('target_estimation', anonymous=True)
 
-        # initialize a subscriber to receive messages from a topic named /robot/camera1/image_raw and use callback function to receive data
+        # initialize a subscriber to receive messages from a topic named /robot/camera1/image_raw and use callback
+        # function to receive data
         self.image_sub1 = rospy.Subscriber("/camera1/robot/image_raw", Image, self.image1_callback, queue_size=10)
         self.image_sub2 = rospy.Subscriber("/camera2/robot/image_raw", Image, self.image2_callback, queue_size=10)
 
-        # initialize a subscriber to receive messages from topics named pix_to_m_ratio and use callback function to receive data
+        # initialize a subscriber to receive messages from topics named pix_to_m_ratio and use callback function to
+        # receive data
         self.cam1_ratio_sub = rospy.Subscriber("/camera1/pix_to_m_ratio", Float64, self.get_camera1_ratio, queue_size=10)
         self.cam2_ratio_sub = rospy.Subscriber("/camera2/pix_to_m_ratio", Float64, self.get_camera2_ratio, queue_size=10)
         self.pix_to_m_ratio_img1 = 1.0
@@ -85,7 +86,11 @@ class TargetEstimator:
             orange_mask = cv2.dilate(orange_mask, kernel, iterations=1)
             sphere_position = find_target(orange_mask, vis.sphere_template, self.target_history, True)
 
-            base_frame = [399, 533]  # TODO: replace with actual detection
+            yellow_mask = cv2.inRange(cv_image1, vis.yellow_mask_low, vis.yellow_mask_high)
+            base_frame = vis.detect_blob_center(yellow_mask)
+            if base_frame is None:
+                rospy.logwarn("Cannot detect yellow blob (base frame) in camera 1 for target estimation")
+                return
             sphere_relative_distance = np.absolute(sphere_position - base_frame)
 
             # Visualize movement of target
@@ -118,7 +123,11 @@ class TargetEstimator:
             orange_mask = cv2.dilate(orange_mask, kernel, iterations=1)
             sphere_position = find_target(orange_mask, vis.sphere_template, self.target_history, False)
 
-            base_frame = [399, 533]  # TODO: replace with actual detection
+            yellow_mask = cv2.inRange(cv_image2, vis.yellow_mask_low, vis.yellow_mask_high)
+            base_frame = vis.detect_blob_center(yellow_mask)
+            if base_frame is None:
+                rospy.logwarn("Cannot detect yellow blob (base frame) in camera 2 for target estimation")
+                return
             sphere_relative_distance = np.absolute(sphere_position - base_frame)
 
             # Visualize movement of target

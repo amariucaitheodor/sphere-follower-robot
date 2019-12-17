@@ -4,6 +4,14 @@ import cv2
 import numpy as np
 
 sphere_template = cv2.imread("/home/theo/catkin_ws/src/sphere-follower-robot/src/templates/sphere.png", 0)
+yellow_mask_low = (0, 100, 100)
+yellow_mask_high = (80, 255, 255)
+blue_mask_low = (100, 0, 0)
+blue_mask_high = (255, 80, 80)
+green_mask_low = (0, 100, 0)
+green_mask_high = (80, 255, 80)
+red_mask_low = (0, 0, 100)
+red_mask_high = (80, 80, 255)
 
 
 # Detecting the centre of a colored circle

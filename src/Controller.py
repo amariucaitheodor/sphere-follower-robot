@@ -43,13 +43,10 @@ class Controller:
         rospy.init_node('controller', anonymous=True)
 
         # initialize a subscriber to get position of blobs
-        self.blob_sub = rospy.Subscriber("/blobs_pos", Float64MultiArray, self.callback_update_end_effector)
+        self.blob_sub = rospy.Subscriber("/blobs_pos", Float64MultiArray, self.get_end_effector_and_move_robot)
 
         # initialize a subscriber to get position of target
-        self.target_sub = rospy.Subscriber("/target_position_estimate", Float64MultiArray, self.callback_update_target)
-
-        # initialize a subscriber to get current joint angles
-        self.joint_angles_sub = rospy.Subscriber("/joint_angles", Float64MultiArray, self.callback_update_joints)
+        self.target_sub = rospy.Subscriber("/target_position_estimate", Float64MultiArray, self.get_target_position)
 
         # initialize a publisher to publish new joint angles to the robot
         self.robot_joint1_pub = rospy.Publisher("/robot/joint1_position_controller/command", Float64, queue_size=10)
@@ -59,8 +56,8 @@ class Controller:
 
         # initialize variables
         self.end_effector_position = np.array([0.0, 0.0, 7.0])
-        self.target_position = np.array([0.0, 0.0, 0.0])
-        self.joint_angles = np.array([0.0, 0.0, 0.0, 0.0])
+        self.target_position = self.end_effector_position
+        self.joint_angles = np.zeros(4)
         self.joint1 = Float64()
         self.joint2 = Float64()
         self.joint3 = Float64()
@@ -75,17 +72,11 @@ class Controller:
         # initialize derivative of error
         self.error_d = np.array([0.0, 0.0, 0.0], dtype='float64')
 
-    def callback_update_end_effector(self, blobs):
+    def get_end_effector_and_move_robot(self, blobs):
+        # update the current blob positions
         self.end_effector_position[0] = blobs.data[9]
         self.end_effector_position[1] = blobs.data[10]
         self.end_effector_position[2] = blobs.data[11]
-
-    def callback_update_target(self, target):
-        self.target_position = target.data
-
-    def callback_update_joints(self, joints):
-        # update the current joint angles
-        self.joint_angles = joints.data
 
         # calculate the new joint angles using closed-loop control
         new_joint_angles = self.control_closed()
@@ -93,7 +84,11 @@ class Controller:
         # move the robot to the new joint angles
         self.move_robot(new_joint_angles)
 
+    def get_target_position(self, target):
+        self.target_position = target.data
+
     def move_robot(self, desired_joint_angles):
+        self.joint_angles = desired_joint_angles
         self.joint1.data = desired_joint_angles[0]
         self.joint2.data = desired_joint_angles[1]
         self.joint3.data = desired_joint_angles[2]
@@ -103,12 +98,14 @@ class Controller:
         self.robot_joint3_pub.publish(self.joint3)
         self.robot_joint4_pub.publish(self.joint4)
 
+    # TODO: make control work and produce satisfactory accuracy graphs for movement of end effector
+    # Closed loop control aka feedback control
     def control_closed(self):
         # P gain
-        k_p = np.eye(3) * 0.1  # working uses 10?
+        k_p = np.eye(3) * 10
 
         # D gain
-        k_d = np.eye(3) * 1  # working uses 0.1?
+        k_d = np.eye(3) * 0.1
 
         # estimate time step
         cur_time = np.array([rospy.get_time()])
@@ -121,7 +118,7 @@ class Controller:
         pos = self.end_effector_position
 
         # desired position (target position)
-        pos_d = self.target_position
+        pos_d = [3, 3, 5]  # self.target_position
 
         # estimate derivative of (previous) error for the D (Derivative) part in the PD controller
         self.error_d = ((pos_d - pos) - self.error) / time_delta
@@ -157,6 +154,7 @@ class Controller:
 
 # call the class
 def main():
+    rospy.sleep(10)  # Wait for initialization of environment before moving robot
     Controller()
     try:
         rospy.spin()
