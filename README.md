@@ -38,5 +38,5 @@ For each one, run the command, click on the arrow button to set axes (choose aro
 - rqt_plot /target_position_estimate/data[1] /blobs_pos/data[10]
 - rqt_plot /target_position_estimate/data[2] /blobs_pos/data[11]
 
-## Sphere Follower Robot Demo, recoded in Gazebo
+## Sphere Follower Robot Demo, captured in Gazebo
 ![Sphere Follower Robot Demo](demo/demo.gif)
