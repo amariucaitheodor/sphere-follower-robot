@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 from __future__ import print_function
 
 import cv2
@@ -55,7 +55,8 @@ class BlobsEstimator:
             green_detected = vis.detect_blob_center(green_mask)
             if green_detected is not None:
                 relative_green = base_frame - green_detected
-                self.blobs_history[7] = pix_to_m_ratio_img1.data * relative_green[0]
+                self.blobs_history[7] = - pix_to_m_ratio_img1.data * relative_green[0]  # NEGATIVE BECAUSE OF AXIS
+                # CONVENTION (THIS WAS A MAJOR SOURCE OF CONFUSION FOR ROBOT CONTROL)
                 self.blobs_history[8] = (self.blobs_history[8] + pix_to_m_ratio_img1.data * relative_green[1]) / 2
 
                 # Visualize green blob through camera 1
@@ -74,7 +75,8 @@ class BlobsEstimator:
             red_detected = vis.detect_blob_center(red_mask)
             if red_detected is not None:
                 relative_red = base_frame - red_detected
-                self.blobs_history[10] = pix_to_m_ratio_img1.data * relative_red[0]
+                self.blobs_history[10] = - pix_to_m_ratio_img1.data * relative_red[0]  # NEGATIVE BECAUSE OF AXIS
+                # CONVENTION (THIS WAS A MAJOR SOURCE OF CONFUSION FOR ROBOT CONTROL)
                 self.blobs_history[11] = (self.blobs_history[11] + pix_to_m_ratio_img1.data * relative_red[1]) / 2
 
                 # Visualize red blob through camera 1
@@ -135,7 +137,8 @@ class BlobsEstimator:
             green_detected = vis.detect_blob_center(green_mask)
             if green_detected is not None:
                 relative_green = base_frame - green_detected
-                self.blobs_history[6] = pix_to_m_ratio_img2.data * relative_green[0]
+                self.blobs_history[6] = - pix_to_m_ratio_img2.data * relative_green[0]  # NEGATIVE BECAUSE OF AXIS
+                # CONVENTION (THIS WAS A MAJOR SOURCE OF CONFUSION FOR ROBOT CONTROL)
                 self.blobs_history[8] = (self.blobs_history[8] + pix_to_m_ratio_img2.data * relative_green[1]) / 2
 
                 # Visualize green blob through camera 2
@@ -154,7 +157,8 @@ class BlobsEstimator:
             red_detected = vis.detect_blob_center(red_mask)
             if red_detected is not None:
                 relative_red = base_frame - red_detected
-                self.blobs_history[9] = pix_to_m_ratio_img2.data * relative_red[0]
+                self.blobs_history[9] = - pix_to_m_ratio_img2.data * relative_red[0]  # NEGATIVE BECAUSE OF AXIS
+                # CONVENTION (THIS WAS A MAJOR SOURCE OF CONFUSION FOR ROBOT CONTROL)
                 self.blobs_history[11] = (self.blobs_history[11] + pix_to_m_ratio_img2.data * relative_red[1]) / 2
 
                 # Visualize red blob through camera 2

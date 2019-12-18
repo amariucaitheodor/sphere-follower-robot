@@ -1,9 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
+from __future__ import print_function
 
-import sys
-import rospy
 import numpy as np
+import rospy
 from std_msgs.msg import Float64, Float64MultiArray
+
+import JointAnglesEstimator
 
 
 def precomputed_jacobian(joints):
@@ -43,10 +45,19 @@ class Controller:
         rospy.init_node('controller', anonymous=True)
 
         # initialize a subscriber to get position of blobs
-        self.blob_sub = rospy.Subscriber("/blobs_pos", Float64MultiArray, self.get_end_effector_and_move_robot)
+        self.blob_sub = rospy.Subscriber("/blobs_pos", Float64MultiArray, self.get_blob_positions_and_move_robot)
 
         # initialize a subscriber to get position of target
         self.target_sub = rospy.Subscriber("/target_position_estimate", Float64MultiArray, self.get_target_position)
+
+        # initialize a subscriber to obtain real target position (for DEBUGGING only)
+        # self.target1_x_sub = rospy.Subscriber("/target/x_position_controller/command", Float64,
+        #                                       self.get_target_real_position_x)
+        # self.target1_y_sub = rospy.Subscriber("/target/y_position_controller/command", Float64,
+        #                                       self.get_target_real_position_y)
+        # self.target1_z_sub = rospy.Subscriber("/target/z_position_controller/command", Float64,
+        #                                       self.get_target_real_position_z)
+        # self.target_real_position = np.array([0.0, 0.0, 7.0])
 
         # initialize a publisher to publish new joint angles to the robot
         self.robot_joint1_pub = rospy.Publisher("/robot/joint1_position_controller/command", Float64, queue_size=10)
@@ -55,8 +66,8 @@ class Controller:
         self.robot_joint4_pub = rospy.Publisher("/robot/joint4_position_controller/command", Float64, queue_size=10)
 
         # initialize variables
-        self.end_effector_position = np.array([0.0, 0.0, 7.0])
-        self.target_position = self.end_effector_position
+        self.blob_positions = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 5.0, 0.0, 0.0, 7.0])
+        self.target_position = np.array([0.0, 0.0, 7.0])
         self.joint_angles = np.zeros(4)
         self.joint1 = Float64()
         self.joint2 = Float64()
@@ -72,17 +83,40 @@ class Controller:
         # initialize derivative of error
         self.error_d = np.array([0.0, 0.0, 0.0], dtype='float64')
 
-    def get_end_effector_and_move_robot(self, blobs):
+    def get_blob_positions_and_move_robot(self, blobs):
+        if len(blobs.data) == 0:
+            rospy.logwarn("Joint angle estimation (and therefore control) cannot take place because blob positions "
+                          "received are empty")
+            return
+
         # update the current blob positions
-        self.end_effector_position[0] = blobs.data[9]
-        self.end_effector_position[1] = blobs.data[10]
-        self.end_effector_position[2] = blobs.data[11]
+        self.blob_positions = blobs.data
+
+        # print("BL:({0:.2f}, {1:.2f}, {2:.2f}), GR:({3:.2f}, {4:.2f}, {5:.2f}), RE:({6:.2f}, {7:.2f}, {8:.2f}), "
+        #       "TAR:({9:.1f}, {10:0.2f}, {11:.2f}), ".format(self.blob_positions[3], self.blob_positions[4],
+        #                                                     self.blob_positions[5],
+        #                                                     self.blob_positions[6], self.blob_positions[7],
+        #                                                     self.blob_positions[8],
+        #                                                     self.blob_positions[9], self.blob_positions[10],
+        #                                                     self.blob_positions[11],
+        #                                                     self.target_position[0], self.target_position[1],
+        #                                                     self.target_position[2]))
+        # end='\r')
 
         # calculate the new joint angles using closed-loop control
         new_joint_angles = self.control_closed()
 
         # move the robot to the new joint angles
         self.move_robot(new_joint_angles)
+
+    # def get_target_real_position_x(self, target_real_x):
+    #     self.target_real_position[0] = target_real_x.data
+    #
+    # def get_target_real_position_y(self, target_real_y):
+    #     self.target_real_position[1] = target_real_y.data
+    #
+    # def get_target_real_position_z(self, target_real_z):
+    #     self.target_real_position[2] = target_real_z.data
 
     def get_target_position(self, target):
         self.target_position = target.data
@@ -98,7 +132,6 @@ class Controller:
         self.robot_joint3_pub.publish(self.joint3)
         self.robot_joint4_pub.publish(self.joint4)
 
-    # TODO: make control work and produce satisfactory accuracy graphs for movement of end effector
     # Closed loop control aka feedback control
     def control_closed(self):
         # P gain
@@ -115,10 +148,12 @@ class Controller:
         self.time_previous_step = cur_time
 
         # robot end-effector position
-        pos = self.end_effector_position
+        pos = np.array([self.blob_positions[9], self.blob_positions[10], self.blob_positions[11]])
 
         # desired position (target position)
-        pos_d = [3, 3, 5]  # self.target_position
+        pos_d = self.target_position
+        # DEBUGGING only: gets the real target position
+        # pos_d = self.target_real_position
 
         # estimate derivative of (previous) error for the D (Derivative) part in the PD controller
         self.error_d = ((pos_d - pos) - self.error) / time_delta
@@ -129,10 +164,20 @@ class Controller:
         # Note: Gravity is unaccounted for as per the simulation conditions! The I part in the PID controller is
         # missing.
 
-        # initial value of joints
-        q_initial = self.joint_angles
-        # OR USE estimated joint angles!!
-        # self.estimate_joint_angles()
+        # don't estimate the joint angles, just select angles based on assumption that robot moved correctly
+        # q_initial = self.joint_angles
+        # OR estimate the joint angles according to the position obtained from image
+        q_initial = JointAnglesEstimator.estimate_joint_angles_v2(
+            np.array([self.blob_positions[6], self.blob_positions[7], self.blob_positions[8]]),
+            np.array([self.blob_positions[9], self.blob_positions[10], self.blob_positions[11]])
+        )
+        if q_initial is None:
+            q_initial = self.joint_angles
+
+        # print("THETA 1:{0:.2f}, THETA 2:{1:.2f}, THETA 3:{2:.2f}, THETA 4:{3:.2f}".format(joint_angles[0],
+        #                                                                                   joint_angles[1],
+        #                                                                                   joint_angles[2],
+        #                                                                                   joint_angles[3]), end='\r')
 
         # calculate the Moore-Penrose psuedo-inverse of Jacobian to obtain angle velocity
         jacobian_inverse = np.linalg.pinv(precomputed_jacobian(q_initial))
@@ -154,7 +199,7 @@ class Controller:
 
 # call the class
 def main():
-    rospy.sleep(10)  # Wait for initialization of environment before moving robot
+    rospy.sleep(7)  # Wait for initialization of environment before moving robot
     Controller()
     try:
         rospy.spin()

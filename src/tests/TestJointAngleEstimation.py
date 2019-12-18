@@ -1,5 +1,7 @@
 import numpy as np
 import sys
+from random import seed
+from random import random
 
 sys.path.append('../')
 import JointAnglesEstimator
@@ -53,15 +55,25 @@ test_joints_array = np.array([
 ])
 
 for i in range(test_joints_array.shape[0]):
-    true_angles = test_joints_array[i]
-    true_angles = np.round(true_angles, 2)
+    start_angles = test_joints_array[i]
+    start_angles = np.round(start_angles, 2)
 
-    green_blob = green_blob_fk(true_angles)
-    red_blob = red_blob_fk(true_angles)
-    estimated_angles = JointAnglesEstimator.estimate_joint_angles(green_blob, red_blob)
+    seed(1)
+    destination_angles = np.array([
+        start_angles[0] + random() / 10,
+        start_angles[1] + random() / 10,
+        start_angles[2] + random() / 10,
+        start_angles[3] + random() / 10
+    ])
+    print(destination_angles)
 
-    if np.allclose(estimated_angles, true_angles, atol=np.pi/4):
+    green_blob = green_blob_fk(start_angles)
+    red_blob = red_blob_fk(start_angles)
+    estimated_angles = JointAnglesEstimator.estimate_joint_angles_v1(green_blob, red_blob)
+
+
+    if np.allclose(estimated_angles, start_angles, atol=np.pi / 4):
         print("Estimated joint angles fairly (?) accurately in this case: {}. True Angles were: {}.".format(
             estimated_angles,
-            true_angles)
+            start_angles)
         )
