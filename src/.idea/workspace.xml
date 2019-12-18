@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbe50d79-367d-4ce0-ba0c-0bfb888978b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/src.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/src.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Details/Configuration examples/Bent configuration.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Details/Configuration examples/Up straight configuration.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Details/Configuration.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.aux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.synctex.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlobsEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/BlobsEstimator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ForwardKinematics.py" beforeDir="false" afterPath="$PROJECT_DIR$/ForwardKinematics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JointAnglesEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/JointAnglesEstimator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoveOrangeSphere.py" beforeDir="false" afterPath="$PROJECT_DIR$/MoveOrangeSphere.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TargetEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/TargetEstimator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestJointAngleEstimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestJointAngleEstimation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,10 +80,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="418" y="209" width="1084" height="828" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1576610416293" />
-    <state x="100" y="127" width="1720" height="853" key="DiffContextDialog" timestamp="1576684729908">
+    <state x="100" y="127" width="1720" height="853" key="DiffContextDialog" timestamp="1576687897750">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="100" y="127" width="1720" height="853" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1576684729908" />
+    <state x="100" y="127" width="1720" height="853" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1576687897750" />
     <state x="743" y="309" width="424" height="487" key="FileChooserDialogImpl" timestamp="1576678187657">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

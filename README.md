@@ -1,20 +1,22 @@
 ## Sphere Follower Robot
 ### Theodor Amariucai
-#### I started the project with Sonia Marshall as part of our coursework for INFR09019 Introduction to Vision and Robotics.
+#### I started the project with Sonia Marshall as part of our coursework for INFR09019 Introduction to Vision and Robotics. I then kept working on the project until I brought it from the state documented in folder 'Initial Assignment' up to the present state.
 
-#### BEFORE ANYTHING:
+![Sphere Follower Robot Demo](Demo/demo.gif)
+
+#### Before anything, make sure you:
 source devel/setup.sh
 
-#### LAUNCH BASIC PROJECT:
-roslaunch sphere-follower-robot spawn.launch
-
-#### LAUNCH CONTROLLER:
+#### Launch controller straight away:
 roslaunch sphere-follower-robot control.launch
 
-#### RUN CODE:
+#### Launch the basic project:
+roslaunch sphere-follower-robot spawn.launch
+
+#### Run code on the basic project:
 ##### Activate temporary python environment with Python 2.7 needed for ROS
 source temp-python/bin/activate
-##### For basic functionality required for control, please run:
+##### For basic functionality please run:
 rosrun sphere-follower-robot BlobsEstimator.py
 rosrun sphere-follower-robot TargetEstimator.py
 rosrun sphere-follower-robot JointAnglesEstimator.py 
@@ -23,20 +25,18 @@ rosrun sphere-follower-robot Controller.py
 ##### to get the results of forward kinematics please run:
 rosrun sphere-follower-robot ForwardKinematics.py 
 
-#### MOVE ROBOT MANUALLY:
+#### Manually move the robot:
 rostopic pub -1 /robot/joint1_position_controller/command std_msgs/Float64 “data: 1.0”
 
-#### PRODUCE GRAPHS FOR TARGET ESTIMATES:
-- for each one, run the command
-- click on the arrow button to set axes (choose around 50 seconds)
-- save as an image
-rqt_plot /target_position_estimate/data[0] /target/x_position_controller/command/data
-rqt_plot /target_position_estimate/data[1] /target/y_position_controller/command/data
-rqt_plot /target_position_estimate/data[2] /target/z_position_controller/command/data
+#### Produce graphs or the target estimates:
+For each one, run the command, click on the arrow button to set axes (choose around 50 seconds) and save as an image.
+- rqt_plot /target_position_estimate/data[0] /target/x_position_controller/command/data
+- rqt_plot /target_position_estimate/data[1] /target/y_position_controller/command/data
+- rqt_plot /target_position_estimate/data[2] /target/z_position_controller/command/data
 
-#### PRODUCE GRAPHS FOR CONTROL ACCURACY:
-rqt_plot /target_position_estimate/data[0] /blobs_pos/data[9]
-rqt_plot /target_position_estimate/data[1] /blobs_pos/data[10]
-rqt_plot /target_position_estimate/data[2] /blobs_pos/data[11]
+#### Produce graphs for control accuracy:
+- rqt_plot /target_position_estimate/data[0] /blobs_pos/data[9]
+- rqt_plot /target_position_estimate/data[1] /blobs_pos/data[10]
+- rqt_plot /target_position_estimate/data[2] /blobs_pos/data[11]
 
 #### A very useful resource which helped me understand the Denavit-Hartenberg parameters was the Robotic Arm Kinematic GUI (part of MRPT).

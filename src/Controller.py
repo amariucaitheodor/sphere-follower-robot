@@ -199,7 +199,7 @@ class Controller:
 
 # call the class
 def main():
-    rospy.sleep(7)  # Wait for initialization of environment before moving robot
+    rospy.sleep(5)  # Wait for initialization of environment before moving robot
     Controller()
     try:
         rospy.spin()
