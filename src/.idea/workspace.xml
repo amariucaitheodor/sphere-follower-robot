@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbe50d79-367d-4ce0-ba0c-0bfb888978b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Details/Configuration examples/Bent configuration.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Details/Configuration examples/Up straight configuration.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Details/Configuration.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Details/Forward Kinematics.tex" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ForwardKinematics.py" beforeDir="false" afterPath="$PROJECT_DIR$/ForwardKinematics.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

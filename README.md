@@ -1,6 +1,7 @@
 ## Sphere Follower Robot
 ### Theodor Amariucai
 #### I started the project with Sonia Marshall as part of our coursework for INFR09019 Introduction to Vision and Robotics. I then kept working on the project until I brought it from the state documented in folder 'Initial Assignment' up to the present state.
+#### A very useful resource which helped me understand the Denavit-Hartenberg parameters was the Robotic Arm Kinematic GUI (part of MRPT).
 
 #### Before anything, make sure you:
 source devel/setup.sh
@@ -18,9 +19,9 @@ source temp-python/bin/activate
 rosrun sphere-follower-robot BlobsEstimator.py
 rosrun sphere-follower-robot TargetEstimator.py
 rosrun sphere-follower-robot JointAnglesEstimator.py 
-##### to move the robot please run:
+##### To move the robot, please run:
 rosrun sphere-follower-robot Controller.py
-##### to get the results of forward kinematics please run:
+##### To get the results of forward kinematics, please run:
 rosrun sphere-follower-robot ForwardKinematics.py 
 
 #### Manually move the robot:
@@ -37,6 +38,5 @@ For each one, run the command, click on the arrow button to set axes (choose aro
 - rqt_plot /target_position_estimate/data[1] /blobs_pos/data[10]
 - rqt_plot /target_position_estimate/data[2] /blobs_pos/data[11]
 
-#### A very useful resource which helped me understand the Denavit-Hartenberg parameters was the Robotic Arm Kinematic GUI (part of MRPT).
-
+## Sphere Follower Robot Demo, recoded in Gazebo
 ![Sphere Follower Robot Demo](demo/demo.gif)
